@@ -1,39 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+edit testing
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-//¶¨Òå´¬²°×´Ì¬
+//å®šä¹‰èˆ¹èˆ¶çŠ¶æ€
 typedef struct{
-	double roll; //ºáÒ¡½Ç¶È
-	double roll_rate; //ºáÒ¡½ÇËÙ¶È
+	double roll; //æ¨ªæ‘‡è§’åº¦
+	double roll_rate; //æ¨ªæ‘‡è§’é€Ÿåº¦
 }Shipstate;
 
-//¶¨Òå¿ØÖÆÆ÷
+//å®šä¹‰æ§åˆ¶å™¨
 typedef struct{
-	double kp; //±ÈÀıÔöÒæ
-	double kd; //Î¢·ÖÔöÒæ 
+	double kp; //æ¯”ä¾‹å¢ç›Š
+	double kd; //å¾®åˆ†å¢ç›Š 
 }Controller;
 
-//¼ÆËã¿ØÖÆÊä³ö
+//è®¡ç®—æ§åˆ¶è¾“å‡º
 double calculateControlOutput(Controller controller,ShipState state){
-	//¼ÆËãÎó²î
-	double error=0-state.roll; //Ä¿±êºáÒ¡½Ç¶ÈÎªÁã
-	//»ıËã¿ØÖÆÊä³ö
+	//è®¡ç®—è¯¯å·®
+	double error=0-state.roll; //ç›®æ ‡æ¨ªæ‘‡è§’åº¦ä¸ºé›¶
+	//ç§¯ç®—æ§åˆ¶è¾“å‡º
 	double control_output=controller.kp*error-controller.kd*state.roll_rate;
 	
 	return control_output; 
 } 
 
 int main(int argc, char *argv[]) {
-	//³õÊ¼»¯´¬²°×´Ì¬ºÍ¿ØÖÆÆ÷
+	//åˆå§‹åŒ–èˆ¹èˆ¶çŠ¶æ€å’Œæ§åˆ¶å™¨
 	ShipState state={0.0,0.0};
 	Controller controller+{1.0,0.5};
 	
-	//Ä£Äâ´¬²°ÔË¶¯
+	//æ¨¡æ‹Ÿèˆ¹èˆ¶è¿åŠ¨
 	for(int i=0;i<10,i++){
-		//¸üĞÂ´¬²°×´Ì¬
-		state.roll_rate+=calculateContorlOutput(controller,state)*0.1; //¸üĞÂºáÒ¡½ÇËÙ¶È
-		//Êä³ö´¬²°×´Ì¬ 
+		//æ›´æ–°èˆ¹èˆ¶çŠ¶æ€
+		state.roll_rate+=calculateContorlOutput(controller,state)*0.1; //æ›´æ–°æ¨ªæ‘‡è§’é€Ÿåº¦
+		//è¾“å‡ºèˆ¹èˆ¶çŠ¶æ€ 
 		printf("Time:%d,Roll:%.2f,Roll Rate:%.2f\n",i,state.roll,state.roll_rate);
 	} 
 	return 0;
